@@ -114,7 +114,7 @@ class MatrixRecSysModel(object):
                 P,Q = self.sgd(P,Q)
             elif optimizer_type == "BGD":
                 print("BGD")
-                P,Q = self.bgd(P,Q)
+                P,Q = self.bgd(P,Q,self.batch_size)
             else:
                 raise NotImplementedError("Please choose one of SGD and BGD.")
             
@@ -172,7 +172,7 @@ class MatrixRecSysModel(object):
         P,Q = self.grad_norm(P, Q, train_step_dataset)
         return P, Q
 
-    def bgd(self, P, Q, batch_size: int=8):
+    def bgd(self, P, Q, batch_size):
         '''
         *********************************
         基本分：请实现【批量梯度下降】优化
